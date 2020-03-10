@@ -1,0 +1,44 @@
+public class minimumflips {
+	static int minimumflip(int a,int b,int c)
+	{
+		int count=0;
+		while(c!=0||a!=0||b!=0)
+		{
+			int a1=a&1;
+			int b1=b&1;
+			int c1=c&1;
+			if((a1|b1)!=c1)
+			{
+				if(c1==1)
+					count++;
+				else if(a1==1&&b1==1)
+					count+=2;
+				else
+					count++;
+			}
+			a=a>>1;
+			b=b>>1;
+			c=c>>1;
+		}
+		return count;
+	}
+public static void main(String args[])
+{
+	int inputA[]= {2,14,17,59,100};
+	int inputB[]= {6,9,5,5,79};
+	int inputC[]= {5,10,10,12,13};
+	int output[]=new int[inputA.length];
+	int expected_output[]= {3,2,6,5,4};
+	for(int i=0;i<inputA.length;i++)
+	output[i]=minimumflip(inputA[i],inputB[i],inputC[i]);
+	
+//Testing
+	 for(int i=0;i<expected_output.length;i++)
+     {
+  	   if(output[i]==expected_output[i])
+  		   System.out.println("Passed");
+  	   else
+  		   System.out.println("Failed "+(i+1)+"th case");
+     }
+}
+}
